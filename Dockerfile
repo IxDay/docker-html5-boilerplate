@@ -14,9 +14,11 @@ RUN apt-get update
 RUN apt-get install -y curl unzip
 RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash -
 RUN apt-get install -y nodejs
+RUN npm install --global gulp
 
 RUN TMPFILE=$(tempfile) && \
     curl -s -o "$TMPFILE" "$HTML5_BOILERPLATE_URL" && \
     unzip -d /tmp "$TMPFILE" && \
     rm "$TMPFILE"
+
 
