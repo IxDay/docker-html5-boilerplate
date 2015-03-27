@@ -34,3 +34,5 @@ RUN TMPFILE=$(tempfile) && \
     unzip -d /tmp "$TMPFILE" && \
     rm "$TMPFILE"
 
+EXPOSE 8000 35729
+
