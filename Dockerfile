@@ -20,7 +20,7 @@ ENV WORKDIR /tmp/
 
 WORKDIR $WORKDIR
 
-ADD $PACKAGE $GULPFILE $WORKDIR
+ADD package.json gulpfile.js $WORKDIR
 
 RUN apt-get update
 RUN apt-get install -y curl unzip
@@ -35,4 +35,8 @@ RUN TMPFILE=$(tempfile) && \
     rm "$TMPFILE"
 
 EXPOSE 8000 35729
+
+ENTRYPOINT ["/usr/bin/gulp"]
+
+CMD ["serve"]
 
