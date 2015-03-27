@@ -1,9 +1,0 @@
-{
-    "name": "docker-html5-boilerplate",
-    "version": "0.1.0",
-    "description": "Simple html5 boilerplate through Docker with gulp",
-    "dependencies": {
-        "gulp": "3.8.11",
-        "gulp-server-livereload": "1.2.1"
-    }
-}
