@@ -5,7 +5,6 @@
 FROM       debian
 MAINTAINER Maxime Vidori <maxime.vidori@gmail.com>
 
-WORKDIR /tmp
 
 ENV HTML5_BOILERPLATE_URL="http://www.initializr.com/builder?"\
 "h5bp-content&html5shiv&h5bp-favicon&h5bp-404&h5bp-css&h5bp-csshelpers&"\
@@ -17,8 +16,11 @@ ENV GULPFILE="https://raw.githubusercontent.com/IxDay/"\
 ENV PACKAGE="https://raw.githubusercontent.com/IxDay/"\
 "docker-html5-boilerplate/master/package.json"
 
-ADD $PACKAGE .
-ADD $GULPFILE .
+ENV WORKDIR /tmp/
+
+WORKDIR $WORKDIR
+
+ADD $PACKAGE $GULPFILE $WORKDIR
 
 RUN apt-get update
 RUN apt-get install -y curl unzip
