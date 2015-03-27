@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var server = require('gulp-server-livereload');
+var ip = require('ip');
 
 var mounted_dir = '/mnt';
 
@@ -16,7 +17,7 @@ gulp.task('serve', function () {
   gulp.src(mounted_dir)
     .pipe(server({
       livereload: true,
-      host: '0.0.0.0',
+      host: ip.address(),
       port: 8000
     }));
 });
