@@ -21,10 +21,10 @@ serve it.
 the ip is visible in `NetworkSettings` `IPAddress` section. 
 If you have [jq](http://stedolan.github.io/jq/) installed, here is the complete
 command to access the information
-```
-HTML_CONTAINER=$(docker ps | awk '$2 ~ /html5-boilerplate/ { print $1 }')
-docker inspect $HTML_CONTAINER | jq '.[0].NetworkSettings.IPAddress'
-```
+ ```bash
+ HTML_CONTAINER=$(docker ps | awk '$2 ~ /html5-boilerplate/ { print $1 }')
+ docker inspect $HTML_CONTAINER | jq '.[0].NetworkSettings.IPAddress'
+ ```
 
 * access the ip on the port 8000 through you browser, then enjoy livereload!
 
