@@ -1,14 +1,13 @@
 var gulp = require('gulp');
 var connect = require('gulp-connect');
-var ip = require('ip');
+var os = require('os');
 
 var mounted_dir = '/mnt';
 var mounted_dir_files = mounted_dir + '/**';
 
-gulp.task('default', function () {
-  console.log('hello world');
-});
-
+var ifaces = os.networkInterfaces();
+var ip_address = ifaces['eth0'][0].address
+ 
 gulp.task('init', function () {
   gulp.src('initializr/**')
     .pipe(gulp.dest(mounted_dir));
@@ -26,7 +25,7 @@ gulp.task('serve', ['watch'], function () {
     connect.server({
       root: mounted_dir,
       livereload: true,
-      host: ip.address(),
+      host: ip_address,
       port: 8000
     });
 });

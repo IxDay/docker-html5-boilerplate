@@ -39,7 +39,7 @@ fi
 command -v boot2docker > /dev/null && \
 [ $(boot2docker status) = "running" ] && \
 ! netstat -nr | grep -q "172.17.*$(boot2docker ip)" && \
-sudo route -n add 172.17.0.0/16 $(boot2docker ip)
+echo_and_run sudo route -n add 172.17.0.0/16 $(boot2docker ip)
 
 # Run the container and serve pwd directly with livereload
 echo_and_run docker run -v $(pwd):/mnt html5-boilerplate
