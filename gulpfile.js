@@ -6,6 +6,7 @@ var mounted_dir = '/mnt';
 var mounted_dir_files = mounted_dir + '/**';
 
 var ifaces = os.networkInterfaces();
+console.log(ifaces);
 var ip_address = ifaces['eth0'][0].address
  
 gulp.task('init', function () {
