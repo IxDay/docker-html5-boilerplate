@@ -36,10 +36,16 @@ then
 fi
 
 # Check if we are working with boot2docker and add routes if needed
-command -v boot2docker > /dev/null && \
-[ $(boot2docker status) = "running" ] && \
-! netstat -nr | grep -q "172.17.*$(boot2docker ip)" && \
-echo_and_run sudo route -n add 172.17.0.0/16 $(boot2docker ip)
+if command -v boot2docker > /dev/null && [ $(boot2docker status) = "running" ] 
+then
+    # Remove old 172.17 if boot2docker ip does not correspond
+    netstat -nr | grep "172.17" | grep -vq "$(boot2docker ip)" && \
+    echo_and_run sudo route -n delete 172.17.0.0/16
+    
+    # Add the route    
+    ! netstat -nr | grep -q "172.17.*$(boot2docker ip)" && \
+    echo_and_run sudo route -n add 172.17.0.0/16 $(boot2docker ip)
+fi
 
 # Run the container and serve pwd directly with livereload
 echo_and_run docker run -v $(pwd):/mnt html5-boilerplate

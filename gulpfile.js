@@ -2,8 +2,6 @@ var gulp = require('gulp');
 var connect = require('gulp-connect');
 var exec = require('child_process').execSync;
 
-var os = require('os');
-
 var mounted_dir = '/mnt';
 var mounted_dir_files = mounted_dir + '/**';
 
@@ -12,11 +10,6 @@ var ip_command = 'ip addr show eth0 | ' +
     'awk \'$2 ~/172\.17/ { gsub(/\\/.*/, "", $2); print $2 }\'';
 var ip_address = exec(ip_command);
 
-console.log(ip_address);
-
-var ifaces = os.networkInterfaces();
-var ip_address = ifaces['eth0'][0].address
- 
 gulp.task('init', function () {
   gulp.src('initializr/**')
     .pipe(gulp.dest(mounted_dir));
