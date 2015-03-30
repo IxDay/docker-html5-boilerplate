@@ -18,8 +18,8 @@ ADD gulpfile.js $WORKDIR
 
 RUN apt-get update
 RUN apt-get install -y curl unzip
-RUN curl -sL https://deb.nodesource.com/setup_iojs_1.x | bash -
-RUN apt-get install -y iojs
+RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash -
+RUN apt-get install -y nodejs
 
 RUN npm install gulp gulp-connect
 
