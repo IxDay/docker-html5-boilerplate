@@ -3,7 +3,7 @@ set -e
 
 IMAGE_NAME="html5-boilerplate"
 
-# Echo the command prefixed with '++' than run it
+# Echo the command prefixed with '++' then run it
 echo_and_run () {
     echo ++ "$@"
     eval "$@" 
@@ -35,7 +35,7 @@ then
     echo_and_run docker kill $CONTAINER
 fi
 
-# Check if we are working with boot2docker and add routes if needed
+# Check if we are working with boot2docker, add routes if needed
 if command -v boot2docker > /dev/null && [ $(boot2docker status) = "running" ] 
 then
     # Remove old 172.17 if boot2docker ip does not correspond

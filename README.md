@@ -3,7 +3,15 @@
 This simple container allows you to quickly set up a static webpage and 
 serve it. 
 
+## Getting started
+
+Just run the following command:
+`bash <(curl -fsSL https://raw.githubusercontent.com/IxDay/
+docker-html5-boilerplate/master/run.sh)`
+
 ## How To
+
+The [run.sh](./run.sh) script launch the following commands
 
 * install docker ([link here](https://docs.docker.com/installation/))
 
@@ -21,10 +29,10 @@ serve it.
 the ip is visible in `NetworkSettings` `IPAddress` section. 
 If you have [jq](http://stedolan.github.io/jq/) installed, here is the complete
 command to access the information
- ```bash
- HTML_CONTAINER=$(docker ps | awk '$2 ~ /html5-boilerplate/ { print $1 }')
- docker inspect $HTML_CONTAINER | jq '.[0].NetworkSettings.IPAddress'
- ```
+```
+HTML_CONTAINER=$(docker ps | awk '$2 ~ /html5-boilerplate/ { print $1 }')
+docker inspect $HTML_CONTAINER | jq '.[0].NetworkSettings.IPAddress'
+```
 
 * access the ip on the port 8000 through you browser, then enjoy livereload!
 
