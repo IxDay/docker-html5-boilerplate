@@ -6,7 +6,7 @@ FROM       debian
 MAINTAINER Maxime Vidori <maxime.vidori@gmail.com>
 
 
-ENV HTML5_BOILERPLATE_URL="http://www.initializr.com/builder?"\
+ENV HTML5_BOILERPLATE_URL "http://www.initializr.com/builder?"\
 "h5bp-content&html5shiv&h5bp-favicon&h5bp-404&h5bp-css&h5bp-csshelpers&"\
 "h5bp-mediaqueryprint&h5bp-mediaqueries&simplehtmltag&izr-emptyscript"
 
