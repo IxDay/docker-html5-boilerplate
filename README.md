@@ -19,10 +19,10 @@ The [run.sh](./run.sh) script launch the following commands
 `docker build -t html5-boilerplate github.com/IxDay/docker-html5-boilerplate`
 
 * [optionnal] initialize the current directory with a simple html boilerplate
-`docker -v $(pwd):/mnt html5-boilerplate init`
+`docker run -v $(pwd):/mnt html5-boilerplate init`
 
 * serve the current directory though a webserver with livereload
-`docker -v $(pwd):/mnt html5-boilerplate`
+`docker run -v $(pwd):/mnt html5-boilerplate`
 
 * get the ip of the docker container
 `docker inspect $(docker ps | awk '$2 ~ /html5-boilerplate/ { print $1 }')`,
