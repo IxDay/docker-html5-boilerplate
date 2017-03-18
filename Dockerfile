@@ -1,36 +1,24 @@
 # html-boilerplate
 #
-# VERSION               0.0.1
+# VERSION               0.0.2
 
-FROM       debian
+FROM       alpine:3.4
 MAINTAINER Maxime Vidori <maxime.vidori@gmail.com>
 
+RUN apk --update add nodejs
+RUN npm install gulp gulp-connect
 
 ENV HTML5_BOILERPLATE_URL "http://www.initializr.com/builder?"\
 "h5bp-content&html5shiv&h5bp-favicon&h5bp-404&h5bp-css&h5bp-csshelpers&"\
 "h5bp-mediaqueryprint&h5bp-mediaqueries&simplehtmltag&izr-emptyscript"
 
-ENV WORKDIR /tmp/
+RUN apk --update add -t build-dependencies wget libarchive-tools \
+    && wget -O - "$HTML5_BOILERPLATE_URL" | bsdtar -xvf- \
+	&& apk del build-dependencies \
+	&& rm -rf /var/cache/apk/*
 
-WORKDIR $WORKDIR
-
-ADD gulpfile.js $WORKDIR
-
-RUN apt-get update
-RUN apt-get install -y curl unzip
-RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash -
-RUN apt-get install -y nodejs
-
-RUN npm install gulp gulp-connect
-
-RUN TMPFILE=$(tempfile) && \
-    curl -s -o "$TMPFILE" "$HTML5_BOILERPLATE_URL" && \
-    unzip -d /tmp "$TMPFILE" && \
-    rm "$TMPFILE"
+ADD gulpfile.js .
 
 EXPOSE 8000 35729
-
 ENTRYPOINT ["node_modules/gulp/bin/gulp.js"]
-
 CMD ["serve"]
-

@@ -6,8 +6,7 @@ var mounted_dir = '/mnt';
 var mounted_dir_files = mounted_dir + '/**';
 
 // workaround for https://github.com/joyent/node/issues/9029
-var ip_command = 'ip addr show eth0 | ' +
-    'awk \'$2 ~/172\.17/ { gsub(/\\/.*/, "", $2); print $2 }\'';
+var ip_command = "ip addr show eth0 | awk '$2 ~172.17 {print $2}'";
 var ip_address = exec(ip_command);
 
 gulp.task('init', function () {
@@ -27,7 +26,7 @@ gulp.task('serve', ['watch'], function () {
     connect.server({
       root: mounted_dir,
       livereload: true,
-      host: ip_address,
+      host: ip_address.toString().slice(0, -4),
       port: 8000
     });
 });
